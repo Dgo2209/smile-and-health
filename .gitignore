@@ -1,0 +1,15 @@
+# Sistema
+.DS_Store
+Thumbs.db
+*.log
+
+# Editores
+.vscode/
+.idea/
+
+# Secretos: NUNCA subir llaves privadas de Supabase ni archivos de entorno
+.env
+.env.*
+*.pem
+*service_role*
+*secret*
