@@ -2,135 +2,409 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
+  <!--Adaptacion al tamaño de pantalla-->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src 'self' https://*.supabase.co wss://*.supabase.co; object-src 'none'; base-uri 'self'; form-action 'self'" />
-  <title>Smile and Health - Sistema Integral de Gestión Odontológica</title>
-  <meta name="description" content="Sistema integral para clínicas y consultorios odontológicos. Agenda digital, expediente clínico, odontograma interactivo FDI, consentimientos con firma digital y cumplimiento NOM-004-SSA3-2012." />
+  <meta http-equiv="Content-Security-Policy"
+    content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src 'self' https://*.supabase.co wss://*.supabase.co; object-src 'none'; base-uri 'self'; form-action 'self'" />
 
-  <!-- Google Fonts: Inter -->
+  <!-- Título que aparece en el navegador -->
+  <title>Sistema Integral de Gestión Odontológica</title>
+
+  <!--
+    Descripción general de la aplicación.
+  -->
+  <meta name="description"
+    content="Sistema integral para clínicas y consultorios odontológicos. Agenda digital, expediente clínico, odontograma interactivo FDI, consentimientos con firma digital y cumplimiento NOM-004-SSA3-2012." />
+  <!-- Permite establecer una conexión anticipada con Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <!-- Prepara la conexión con el servidor de fuentes -->
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
-
-  <!-- Modern Clinical Stylesheet -->
+  <!-- Importa la tipografía Inter en diferentes grosores -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet" />
+  <!--
+    Vincula el archivo CSS principal.
+    Contiene los estilos generales de la aplicación.
+  -->
   <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
-
-  <!-- Inicio de sesión (visible solo en modo servidor / Supabase) -->
+  <!-- MÓDULO 1: INICIO DE SESIÓN                              
+    Contenedor de autenticación.
+    JavaScript puede mostrarlo cuando se requiere iniciar sesión.
+  -->
   <div class="login-overlay" id="login-overlay" hidden>
+    <!-- Tarjeta visual que contiene el formulario de acceso -->
     <div class="login-card">
       <div class="login-brand">
         <div class="brand-logo-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <svg viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2.2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <!-- Dibuja el contorno de una pieza dental -->
             <path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7z"></path>
+            <!-- Dibuja el elemento central del logotipo -->
             <circle cx="12" cy="9" r="2.5"></circle>
           </svg>
         </div>
+        <!-- Información textual del sistema -->
         <div>
-          <h2>Smile and Health</h2>
+          <h2>SISTEMA DE CONTROL DENTAL</h2>
           <p>Acceso exclusivo para el personal de la clínica</p>
         </div>
       </div>
+      <!--
+        Formulario de autenticación.
+        novalidate evita la validación automática del navegador.
+      -->
       <form id="login-form" novalidate>
-        <div class="form-group">
+          <div class="form-group">
           <label for="login-email">Correo electrónico</label>
-          <input type="email" id="login-email" class="form-control" autocomplete="username" required />
+          <!--
+            Campo para ingresar el correo del usuario.
+            type=email permite identificar el formato de correo.
+            autocomplete=username facilita el autocompletado.
+            required indica que el campo debe completarse.
+          -->
+          <input
+            type="email"
+            id="login-email"
+            class="form-control"
+            autocomplete="username"
+            required />
         </div>
+        <!-- Grupo del campo de contraseña -->
         <div class="form-group">
+          <!-- Etiqueta asociada al campo de contraseña -->
           <label for="login-password">Contraseña</label>
-          <input type="password" id="login-password" class="form-control" autocomplete="current-password" required />
+          <!--
+            Campo protegido para introducir la contraseña.
+          -->
+          <input
+            type="password"
+            id="login-password"
+            class="form-control"
+            autocomplete="current-password"
+            required />
         </div>
+        <!--
+          Contenedor donde JavaScript puede presentar errores
+        -->
         <div class="login-error" id="login-error" role="alert" hidden></div>
-        <button type="submit" class="btn btn-primary login-submit" id="login-submit">Entrar</button>
+        <!-- Botón que envía el formulario de inicio de sesión -->
+        <button
+          type="submit"
+          class="btn btn-primary login-submit"
+          id="login-submit">
+          Entrar
+        </button>
       </form>
     </div>
   </div>
-
-  <!-- App Sticky Header (Fiel al Prototipo UACM) -->
+  <!-- ====================================================== -->
+  <!-- MÓDULO 2: ENCABEZADO PRINCIPAL                      
+    Contiene la identidad de la clínica y accesos rápidos.
+  -->
   <header class="app-header">
     <div class="header-inner">
-      <!-- Brand & Practitioner Identity -->
       <div class="brand-wrapper">
-        <div class="brand-logo-icon" title="Smile and Health Dental Clinic">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <!-- Contenedor del logotipo -->
+        <div class="brand-logo-icon"
+          title="SISTEMA DE CONTROL DENTAL">
+          <svg viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2.2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <!-- Representación gráfica de una pieza dental -->
             <path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7z"></path>
+            <!-- Detalle central del logotipo -->
             <circle cx="12" cy="9" r="2.5"></circle>
           </svg>
         </div>
+        <!-- Información textual de la clínica -->
         <div class="brand-info">
+          <!-- Nombre del sistema y distintivo de clínica -->
           <h1>
-            Smile and Health
+            SISTEMA DE CONTROL DENTAL
+            <!-- Etiqueta visual que identifica el tipo de establecimiento -->
             <span class="badge-clinic">CLÍNICA</span>
           </h1>
+          <!-- Información del consultorio y odontólogo activo -->
           <div class="brand-subtitle">
-            Consultorio Dental • <span class="doctor-active" id="header-doctor-name">Dr. Alejandro Mendoza Herrera</span>
+            Consultorio Dental •
+            <!--
+              Identificador del odontólogo activo.
+              JavaScript puede actualizar este texto dinámicamente.
+            -->
+            <span class="doctor-active" id="header-doctor-name">
+              Dr
+            </span>
           </div>
         </div>
       </div>
-
-      <!-- Quick Action Buttons -->
+      <!-- Contenedor de botones de acceso directo -->
       <div class="header-actions">
-        <button class="btn btn-secondary btn-sm" id="btn-header-new-appt">
-          ➕ Nueva Cita
-        </button>
-        <button class="btn btn-secondary btn-sm" id="btn-header-new-patient">
+        <!--
+          Botón para iniciar el registro de un nuevo paciente.
+          Permite acceder rápidamente al formulario correspondiente.
+        -->
+        <button
+          class="btn btn-secondary btn-sm"
+          id="btn-header-new-patient">
           ➕ Nuevo Paciente
         </button>
       </div>
     </div>
   </header>
-
-  <!-- Main Navigation Tabs Bar -->
+  <!-- ====================================================== -->
+  <!-- MÓDULO 3: BARRA DE NAVEGACIÓN                          -->
+  <!-- ====================================================== -->
+  <!--
+    Barra que contiene las pestañas principales.
+    Permite cambiar entre los módulos sin abandonar la aplicación.
+  -->
   <nav class="nav-tabs-bar">
+    <!-- Contenedor de las opciones de navegación -->
     <div class="nav-tabs-inner">
-      <a href="#agenda" class="nav-tab active" data-view="agenda">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      <!-- ================================================== -->
+      <!-- NAVEGACIÓN: AGENDA Y CITAS                         -->
+      <!-- ================================================== -->
+      <!--
+        Enlace al módulo de agenda.
+        data-view identifica el contenedor que debe mostrarse.
+        active indica que esta pestaña está seleccionada inicialmente.
+      -->
+      <a href="#agenda"
+        class="nav-tab active"
+        data-view="agenda">
+        <!-- Icono de calendario -->
+        <svg viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <!-- Contorno del calendario -->
+          <rect x="3" y="4" width="18" height="18"
+            rx="2" ry="2"/>
+          <!-- Separadores superiores del calendario -->
+          <line x1="16" y1="2" x2="16" y2="6"/>
+          <line x1="8" y1="2" x2="8" y2="6"/>
+          <!-- División entre encabezado y contenido -->
+          <line x1="3" y1="10" x2="21" y2="10"/>
+        </svg>
         Agenda y Citas
       </a>
-
-      <a href="#pacientes" class="nav-tab" data-view="pacientes">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      <!-- ================================================== -->
+      <!-- NAVEGACIÓN: PACIENTES E HISTORIAL                  -->
+      <!-- ================================================== -->
+      <!-- Acceso al módulo de pacientes -->
+      <a href="#pacientes"
+        class="nav-tab"
+        data-view="pacientes">
+        <!-- Icono SVG que representa un grupo de personas -->
+        <svg viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <!-- Cuerpo del paciente principal -->
+          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+          <!-- Cabeza del paciente principal -->
+          <circle cx="9" cy="7" r="4"/>
+          <!-- Representación de una segunda persona -->
+          <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+          <!-- Cabeza de la segunda persona -->
+          <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+        </svg>
         Pacientes e Historial
       </a>
-
-      <a href="#odontograma" class="nav-tab" data-view="odontograma">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+      <!-- ================================================== -->
+      <!-- NAVEGACIÓN: ODONTOGRAMA CLÍNICO                    -->
+      <!-- ================================================== -->
+      <!-- Acceso al módulo del odontograma -->
+      <a href="#odontograma"
+        class="nav-tab"
+        data-view="odontograma">
+        <!-- Icono relacionado con la odontología -->
+        <svg viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <!-- Representación de una pieza dental -->
+          <path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7z"/>
+          <!-- Detalle central -->
+          <circle cx="12" cy="9" r="2.5"/>
+        </svg>
         Odontograma Clínico
       </a>
-
-      <a href="#evolucion" class="nav-tab" data-view="evolucion">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+      <!-- ================================================== -->
+      <!-- NAVEGACIÓN: NOTAS DE EVOLUCIÓN                     -->
+      <!-- ================================================== -->
+      <!-- Acceso al registro de evolución clínica -->
+      <a href="#evolucion"
+        class="nav-tab"
+        data-view="evolucion">
+        <!-- Icono de documento -->
+        <svg viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <!-- Contorno de una hoja -->
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+          <!-- Esquina doblada del documento -->
+          <polyline points="14 2 14 8 20 8"/>
+          <!-- Líneas de texto del documento -->
+          <line x1="16" y1="13" x2="8" y2="13"/>
+          <line x1="16" y1="17" x2="8" y2="17"/>
+        </svg>
         Notas de Evolución
       </a>
-
-      <a href="#consentimientos" class="nav-tab" data-view="consentimientos">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      <!-- ================================================== -->
+      <!-- NAVEGACIÓN: CONSENTIMIENTOS DIGITALES              -->
+      <!-- ================================================== -->
+      <!-- Acceso al módulo de consentimientos -->
+      <a href="#consentimientos"
+        class="nav-tab"
+        data-view="consentimientos">
+        <!-- Icono de seguridad y protección -->
+        <svg viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <!-- Contorno del escudo -->
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+        </svg>
         Consentimientos Digitales
       </a>
     </div>
   </nav>
-
-  <!-- Main View Container -->
+  <!-- ====================================================== -->
+  <!-- MÓDULO 4: CONTENEDOR PRINCIPAL                         -->
+  <!-- ====================================================== -->
+  <!--
+    Elemento principal que agrupa todos los módulos visuales.
+    Los contenidos se insertan dinámicamente mediante JavaScript.
+  -->
   <main class="main-wrapper">
-    <div id="view-agenda" class="module-view active"></div>
-    <div id="view-pacientes" class="module-view"></div>
-    <div id="view-odontograma" class="module-view"></div>
-    <div id="view-evolucion" class="module-view"></div>
-    <div id="view-consentimientos" class="module-view"></div>
+    <!-- ================================================== -->
+    <!-- CONTENEDOR: AGENDA Y CITAS                         -->
+    <!-- ================================================== -->
+    <!--
+      Aquí se renderiza el contenido de agenda.js.
+      active indica que este módulo se muestra inicialmente.
+    -->
+    <div id="view-agenda"
+      class="module-view active">
+    </div>
+    <!-- ================================================== -->
+    <!-- CONTENEDOR: PACIENTES E HISTORIAL                  -->
+    <!-- ================================================== -->
+    <!--
+      Aquí se inserta la interfaz desarrollada en patients.js.
+      Permite administrar los registros de pacientes.
+    -->
+    <div id="view-pacientes"
+      class="module-view">
+    </div>
+    <!-- ================================================== -->
+    <!-- CONTENEDOR: ODONTOGRAMA CLÍNICO                    -->
+    <!-- ================================================== -->
+    <!--
+      Aquí se inserta el odontograma generado por odontogram.js.
+      Representa gráficamente las piezas dentales.
+    -->
+    <div id="view-odontograma"
+      class="module-view">
+    </div>
+    <!-- ================================================== -->
+    <!-- CONTENEDOR: NOTAS DE EVOLUCIÓN                     -->
+    <!-- ================================================== -->
+    <!--
+      Aquí se renderiza el contenido de evolution.js.
+      Permite documentar el seguimiento clínico.
+    -->
+    <div id="view-evolucion"
+      class="module-view">
+    </div>
+    <!-- ================================================== -->
+    <!-- CONTENEDOR: CONSENTIMIENTOS DIGITALES              -->
+    <!-- ================================================== -->
+    <!--
+      Aquí se inserta la interfaz de consents.js.
+      Administra los documentos de consentimiento informado.
+    -->
+    <div id="view-consentimientos"
+      class="module-view">
+    </div>
   </main>
-
-  <!-- Application Logic & Scripts -->
+  <!-- ====================================================== -->
+  <!-- MÓDULO 5: CARGA DE ARCHIVOS JAVASCRIPT                 -->
+  <!-- ====================================================== -->
+  <!--
+    CONFIGURACIÓN GENERAL
+    Carga las variables y parámetros de configuración.
+    Aquí se establece la configuración de conexión con Supabase.
+  -->
   <script src="js/config.js"></script>
+  <!--
+    DATOS INICIALES
+    Proporciona datos de referencia o información inicial
+    utilizada por los diferentes módulos.
+  -->
   <script src="js/data.js"></script>
+  <!--
+    ADMINISTRACIÓN DEL ESTADO
+    Gestiona la información compartida por la aplicación.
+    Puede mantener datos disponibles para distintos componentes.
+  -->
   <script src="js/store.js"></script>
+  <!--
+    COMUNICACIÓN REMOTA
+    Contiene las operaciones de comunicación con servicios externos,
+    principalmente Supabase, según su implementación.
+  -->
   <script src="js/remote.js"></script>
+  <!--
+    COMPONENTE DE FIRMA DIGITAL
+    Proporciona la funcionalidad para capturar trazos de una firma.
+    Se utiliza principalmente en los consentimientos digitales.
+  -->
   <script src="js/components/signature-pad.js"></script>
+  <!--
+    COMPONENTE DE ODONTOGRAMA
+    Implementa la representación gráfica y la interacción
+    con las piezas dentales del paciente.
+  -->
   <script src="js/components/odontogram.js"></script>
+  <!--
+    COMPONENTE DE AGENDA
+    Gestiona la interfaz y las operaciones relacionadas con:
+    - Registro de citas.
+    - Consulta de horarios.
+    - Modificación de citas.
+    - Asociación de citas con pacientes.
+  -->
   <script src="js/components/agenda.js"></script>
+  <!--
+    COMPONENTE DE PACIENTES
+    Gestiona la interfaz y las operaciones relacionadas con:
+    - Registro de pacientes.
+    - Consulta de información.
+    - Modificación de datos.
+    - Búsqueda de pacientes.
+  -->
   <script src="js/components/patients.js"></script>
+  <!--
+    COMPONENTE DE EVOLUCIÓN
+    Permite registrar y consultar las notas
+    relacionadas con el seguimiento clínico.
+  -->
   <script src="js/components/evolution.js"></script>
+  <!--
+    COMPONENTE DE CONSENTIMIENTOS
+    Gestiona la interfaz de los documentos de consentimiento,
+    su información y las operaciones relacionadas con su registro.
+  -->
   <script src="js/components/consents.js"></script>
+  <!--
+    ARCHIVO PRINCIPAL DE LA APLICACIÓN
+    Se carga al final para coordinar la inicialización del sistema.
+    Puede configurar eventos, navegación y renderizado de módulos.
+    Su implementación determina el flujo de ejecución general.
+  -->
   <script src="js/app.js"></script>
 </body>
 </html>
