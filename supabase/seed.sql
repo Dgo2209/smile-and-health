@@ -1,5 +1,5 @@
 -- =============================================================================
--- Smile and Health - Datos de DEMOSTRACIÓN (opcional)
+-- Sistema Integral de Gestión Odontológica - Datos de DEMOSTRACIÓN (opcional)
 -- Ejecutar DESPUÉS de schema.sql. Todos los datos son ficticios.
 -- Es seguro ejecutarlo más de una vez (on conflict do nothing).
 -- Generado a partir de js/data.js

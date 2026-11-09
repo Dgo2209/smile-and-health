@@ -1,5 +1,5 @@
 /**
- * Smile and Health - Agenda & Appointment Management Component
+ * Sistema Integral de Gestión Odontológica - Agenda & Appointment Management Component
  * Implements the exact UI prototype from pages 7 & 8 of the UACM document:
  * Date navigation, status filter pills, appointment cards with allergy alerts,
  * WhatsApp reminder integration, and collision-free appointment scheduler.

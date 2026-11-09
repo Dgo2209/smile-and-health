@@ -1,12 +1,12 @@
 /**
- * Smile and Health - Dental Clinic Data Model & Seed Dataset
+ *Sistema Integral de Gestión Odontológica- Dental Clinic Data Model & Seed Dataset
  * Contains realistic clinical and administrative demo data
  * based on the UACM software modeling document.
  */
 
 window.DENTAL_DATA = {
   clinic: {
-    name: "Smile and Health",
+    name: "Sistema Integral de Gestión Odontológica",
     subtitle: "Clínica Dental Especializada",
     address: "Av. Insurgentes Sur 1450, Col. Actipan, Benito Juárez, CDMX",
     phone: "55-5682-9011",
@@ -249,7 +249,7 @@ window.DENTAL_DATA = {
   consentTemplates: {
     endodoncia: {
       title: "Consentimiento Informado para Tratamiento de Conductos Radiculares (Endodoncia)",
-      body: `Por medio del presente documento, yo, paciente o tutor legal debidamente identificado, autorizo al especialista odontológico de la Clínica Smile and Health a llevar a cabo el tratamiento de conductos radiculares (endodoncia).
+      body: `Por medio del presente documento, yo, paciente o tutor legal debidamente identificado, autorizo al especialista odontológico del Sistema Integral de Gestión Odontológica a llevar a cabo el tratamiento de conductos radiculares (endodoncia).
 
 He sido informado con claridad de la naturaleza del procedimiento, el cual consiste en la extirpación del tejido pulpar inflamado, infectado o necrosado, la desinfección química y la obturación tridimensional del sistema de conductos radiculares con el objetivo de preservar la pieza dental en boca y evitar su extracción.
 
@@ -263,7 +263,7 @@ Declaro que he respondido con veracidad sobre mis antecedentes médicos, alergia
     },
     cirugia: {
       title: "Consentimiento Informado para Cirugía Bucal y Exodoncia de Terceros Molares",
-      body: `Yo, en pleno uso de mis facultades, otorgo mi consentimiento libre e informado para la realización del procedimiento quirúrgico bucal / exodoncia en la Clínica Smile and Health.
+      body: `Yo, en pleno uso de mis facultades, otorgo mi consentimiento libre e informado para la realización del procedimiento quirúrgico bucal / exodoncia en el Sistema Integral de Gestión Odontológica.
 
 Comprendo que el procedimiento implica la anestesia local, incisión, osteotomía y remoción de la pieza dentaria indicada, con sutura si el caso lo requiere.
 

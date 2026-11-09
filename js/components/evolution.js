@@ -1,5 +1,5 @@
 /**
- * Smile and Health - Clinical Evolution Notes Component
+ * Sistema Integral de Gestión Odontológica - Clinical Evolution Notes Component
  * Full compliance with Mexican Official Standard NOM-004-SSA3-2012:
  * Chronological order, practitioner identity & professional license,
  * vital signs, procedures, materials, electronic signature, and cryptographic inmutability.

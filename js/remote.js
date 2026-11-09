@@ -1,12 +1,8 @@
 /**
- * Smile and Health - Capa remota (Supabase) y control de sesión
+ * Sistema Integral de Gestión Odontológica - Capa remota (Supabase) y control de sesión
  *
  * Solo se usa cuando js/config.js tiene SUPABASE_URL y SUPABASE_KEY.
  * Sin configuración, la app funciona en modo demo local y este archivo no hace nada.
- *
- * Diseño: cada tabla guarda el objeto completo de la app en una columna JSONB
- * ("data") más las columnas necesarias para claves, orden y seguridad.
- * Así los componentes existentes siguen funcionando sin cambios.
  */
 (function () {
   const SUPABASE_LIB =

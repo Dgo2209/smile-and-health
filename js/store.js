@@ -1,19 +1,16 @@
 /**
- * Smile and Health - Reactive Central Store & Persistence Service
+ * Sistema Integral de Gestión Odontológica - Reactive Central Store & Persistence Service
  * Handles state management, persistence, conflict detection and audit logging.
  *
  * Dos modos de persistencia (se decide con js/config.js):
  *  - 'local'  : demo. Datos en localStorage del navegador, sin login.
  *  - 'remote' : Supabase. Datos en PostgreSQL, login obligatorio, roles y
  *               sellado de notas impuestos por el servidor (ver supabase/schema.sql).
- *
- * La lectura sigue siendo síncrona (caché en memoria en this.data) para que los
- * componentes no cambien; en modo remote cada escritura se envía al servidor.
  */
 
 class DentalStore {
   constructor() {
-    this.STORAGE_KEY = 'SMILE_AND_HEALTH_STORE_V1';
+    this.STORAGE_KEY = 'Sistema Integral de Gestión Odontológica_V1';
     this.listeners = {};
 
     const cfg = window.APP_CONFIG || {};
@@ -363,7 +360,7 @@ class DentalStore {
   generateWhatsAppReminderLink(appt) {
     const phoneClean = (appt.phone || '').replace(/\D/g, '');
     const dateFormatted = appt.date.split('-').reverse().join('/');
-    const msg = `Hola *${appt.patientName}*, te recordamos tu cita en *Smile and Health*:\n\n📅 Fecha: *${dateFormatted}*\n⏰ Hora: *${appt.time} hrs*\n🩺 Tratamiento: *${appt.treatment}*\n👨‍⚕️ Atiende: *${appt.doctorName}* (${appt.chair})\n📍 Dirección: Av. Insurgentes Sur 1450, Col. Actipan, Benito Juárez, CDMX.\n\nPor favor responde este mensaje confirmando tu asistencia. ¡Te esperamos!`;
+    const msg = `Hola *${appt.patientName}*, te recordamos tu cita en *Sistema Integral de Gestión Odontológica*:\n\n📅 Fecha: *${dateFormatted}*\n⏰ Hora: *${appt.time} hrs*\n🩺 Tratamiento: *${appt.treatment}*\n👨‍⚕️ Atiende: *${appt.doctorName}* (${appt.chair})\n📍 Dirección: Av. Insurgentes Sur 1450, Col. Actipan, Benito Juárez, CDMX.\n\nPor favor responde este mensaje confirmando tu asistencia. ¡Te esperamos!`;
     return `https://wa.me/52${phoneClean}?text=${encodeURIComponent(msg)}`;
   }
 

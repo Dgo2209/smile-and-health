@@ -1,5 +1,5 @@
 /**
- * Smile and Health - Patients Directory & Medical Profiles Component
+ * Sistema Integral de Gestión Odontológica - Patients Directory & Medical Profiles Component
  * Manages patient files, search filters, allergy alerts, emergency contacts,
  * and quick routing to clinical modules (odontogram, notes, consents, billing).
  */

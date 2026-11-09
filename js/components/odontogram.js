@@ -1,5 +1,5 @@
 /**
- * Smile and Health - Interactive FDI Odontogram Component
+ * Sistema Integral de Gestión Odontológica - Interactive FDI Odontogram Component
  * Implements ISO 3950 / FDI two-digit numbering system with 5-surface
  * anatomical polygons, clinical color conventions, and treatment mapping.
  */

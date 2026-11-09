@@ -1,5 +1,5 @@
 /**
- * Smile and Health - Digital Informed Consents Component
+ * Sistema Integral de Gestión Odontológica - Digital Informed Consents Component
  * Implements legal patient authorization documents with touch/mouse signature
  * and exportable formal certificates for dental procedures.
  */
@@ -75,7 +75,7 @@ class ConsentsComponent {
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
               <div style="text-align: left;">
                 <h2 style="font-size: 1.4rem; color: var(--primary-800); font-weight: 900; letter-spacing: -0.02em;">
-                  🦷 Smile and Health
+                  🦷 Sistema Integral de Gestión Odontológica
                 </h2>
                 <div style="font-size: 0.75rem; color: var(--slate-500);">Clínica Odontológica Especializada | Céd. Sanitaria SSA: 09-015-CDMX</div>
               </div>

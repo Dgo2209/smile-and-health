@@ -1,5 +1,5 @@
 /**
- * Smile and Health - Digital Signature Canvas Component
+ * Sistema Integral de Gestión Odontológica - Digital Signature Canvas Component
  * Provides touch and mouse drawing for digital patient consent
  * and doctor authorization under NOM-004-SSA3-2012.
  */

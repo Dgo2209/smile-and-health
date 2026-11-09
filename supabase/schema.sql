@@ -1,5 +1,5 @@
 -- =============================================================================
--- Smile and Health - Esquema de base de datos (Supabase / PostgreSQL)
+-- Sistema Integral de Gestión Odontológica - Esquema de base de datos (Supabase / PostgreSQL)
 --
 -- Cómo usarlo: Supabase → SQL Editor → New query → pega TODO este archivo → Run.
 -- Es seguro volver a ejecutarlo (usa "if not exists", "or replace" y "drop ... if exists").

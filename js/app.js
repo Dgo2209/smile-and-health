@@ -1,5 +1,5 @@
 /**
- * Smile and Health - Main Application Controller
+ * Sistema Integral de Gestión Odontológica - Main Application Controller
  * Orchestrates navigation across clinical & administrative tabs,
  * role-based context, modal dialogs, and toast alerts.
  */
